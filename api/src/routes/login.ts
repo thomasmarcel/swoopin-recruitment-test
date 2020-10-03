@@ -13,7 +13,14 @@ const LoginRoute = async (server : any, opts : any, next: () => void) => {
         method: 'POST',
         url: '/login',
         async handler(req: any, res: any) {
-            // FIXME
+            let body = req.body;
+            // Getting the accout from db or something, here simulating getting the account by mail
+            let account =  req.conf.account;
+
+            let encryptedPwd = EncryptionService.encryptPassword({password: body.password, salt: account.id});
+            let logIn = EncryptionService.comparePassword({ password: body.password, salt: account.id, encrypted: encryptedPwd });
+            let token = server.jwt.sign({ userId: account.id, name: account.name, isAdmin: false })
+            res.send({token});
         },
     })
     next()
