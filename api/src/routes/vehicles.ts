@@ -1,5 +1,6 @@
 import Logger from '@harmonyjs/logger'
 import EncryptionService from 'services/encryption'
+import VehicleService from 'services/vehicle'
 
 const logger = Logger({
     name: 'Vehicles',
@@ -15,7 +16,17 @@ const VehicleList = async (server : any, opts : any, next: () => void) => {
         method: 'GET',
         url: '/vehicles',
         async handler(req: any, res: any) {
-            res.send(200);
+            const vehicles = req.conf.vehicles.map((vehicle: any) => {
+                return {
+                    id: vehicle.id,
+                    name: vehicle.name,
+                    vehicle: vehicle.vehicle,
+                    plate: vehicle.plate,
+                    online: vehicle.online,
+                }
+            })
+            VehicleService.updateVehicles()
+            res.send({vehicles});
         },
     })
     next()
