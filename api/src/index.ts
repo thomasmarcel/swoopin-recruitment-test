@@ -16,6 +16,7 @@ import GeneralStatusRoute from 'routes/general/status'
 import GeneralVersionRoute from 'routes/general/version'
 
 import LoginRoute from 'routes/login'
+import VehicleList from 'routes/vehicles'
 
 async function loadLogger() {
     return Logger({
@@ -67,6 +68,7 @@ async function launchServer(conf : any, logger : ILogger) {
 
     // Endpoints
     server.register(LoginRoute)
+    server.register(VehicleList)
 
     // Add conf
     server.decorateRequest('conf', conf)
