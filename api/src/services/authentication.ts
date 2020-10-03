@@ -17,20 +17,22 @@ function AuthenticationService() {
                 // Decode JSON
                 const decoded = await args.req.jwtVerify()
 
-                if (decoded?.payload?.userId) {
+                // There was a decoded.payload before, it didn't exist and broke auth
+                if (decoded?.userId) {
 
                     // Verify account is present
-                    if ((!this.account) || (decoded.payload.userId === this.account!.id)) {
+                    if ((!this.account) || (decoded.userId === this.account!.id)) {
                         const user = this.account
                         return Object.assign(args.req, { user })
                     }
-                }
+                } else {
 
                 // Error
                 return args.res.code(500).send({
                     statusCode: 500,
                     error: 'Internal Server Error',
                 })
+            }
             } catch (e) {
                 return args.res.code(401).send({
                     statusCode: 401,
