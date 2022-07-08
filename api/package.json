@@ -60,7 +60,7 @@
     "js-yaml": "^3.13.1",
     "json-colorizer": "^2.2.1",
     "mime-types": "^2.1.27",
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "moment-timezone": "^0.5.28",
     "partial-json-parser": "^1.2.2",
     "socket.io": "^2.3.0",
