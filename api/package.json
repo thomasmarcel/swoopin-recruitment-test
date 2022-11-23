@@ -63,7 +63,7 @@
     "moment": "^2.24.0",
     "moment-timezone": "^0.5.28",
     "partial-json-parser": "^1.2.2",
-    "socket.io": "^2.3.0",
+    "socket.io": "^2.5.0",
     "tmp": "^0.2.1"
   }
 }
